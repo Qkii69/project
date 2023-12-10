@@ -1,38 +1,357 @@
-.App {
-  text-align: center;
+:root{
+  --blue-rgb: 33 150 243;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.app{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(prims.svg);
+}
+.card{
+  position: relative;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  width: 70vw;
+  aspect-ratio: 16/9;
+  background-color: white;
+  border-radius: 1rem;
+  user-select: none;
+}
+h2{
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  margin: 0 0 4%;
+ }
+.screen {
+  width: calc(100%-3px);
+  height: calc(100%-6px);
+  display: flex;
+  border: 3px solid rgb(var(--blue-rgb) / 80%);
+  background-color: rgb(var(--blue-rgb) / 15%);
+  overflow: hidden;
+  position: relative;
+  border-radius: 1rem 0 0 1rem;
+} 
+.screen:after,.screenS:after,
+.screen:before,.screenS:before {
+  content: "";
+  height: 10px;
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  translate: -50% 0%;
+  background-color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.screen:before,.screen:before {
+  width: 15%;
+  top: 0rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.screen:after, .screen:after {
+  width: 25%;
+  bottom: 0rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+@keyframes pan-overlay {
+  from {
+    background-position: 0% 0%;
+  }
+  
+  to {
+    background-position: 0% -100%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.screen-overlay {    
+  background: linear-gradient(
+    rgb(var(--blue-rgb) / 0.15),
+    rgb(var(--blue-rgb) / 0.15) 3px,
+    transparent 3px,
+    transparent 9px
+  );
+  background-size: 100% 9px;
+  height: 100%;
+  width: 100%;
+  animation: pan-overlay 22s infinite linear;
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes pan-image {  
+  0% {
+    background-position: 36% 42%;
+    background-size: 200%;
+  }
+  
+  20% {
+    background-position: 30% 35%;
+    background-size: 200%;
+  }
+  
+  20.0001% { /* -- View 2 -- */
+    background-position: 60% 85%;
+    background-size: 500%;
+  }
+  
+  40% {
+    background-position: 49% 81%;
+    background-size: 500%;
+  }
+  
+  40.0001% { /* -- View 3 -- */
+    background-position: 80% 42%;
+    background-size: 300%;
+  }
+  
+  60% {
+    background-position: 84% 33%;
+    background-size: 300%;
+  }
+  
+  60.0001% { /* -- View 4 -- */
+    background-position: 0% 0%;
+    background-size: 300%;
+  }
+  
+  80% {
+    background-position: 15% 4%;
+    background-size: 300%;
+  }
+  
+  80.0001% { /* -- View 5 -- */
+    background-position: 80% 10%;
+    background-size: 300%;
+  }
+  
+  100% {
+    background-position: 72% 14%;
+    background-size: 300%;
+  }
+}
+
+.screen > .screen-image{
+  background-image: url("https://images.unsplash.com/photo-1515266591878-f93e32bc5937?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80");
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  background-size: 300%;
+  background-position: 0% 0%;
+  filter: sepia(100%) hue-rotate(160deg);
+  opacity: 0.6;
+  animation: pan-image 15s linear infinite;
+}
+.card .signPage{
+  width: 100%;
+  margin: 5% 0 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.signPage form{
+  width: 65%;
+}
+.signPage form input , .loginPage form input{
+  border: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: 0;
+  width: 100%;
+  padding: 2% 0 2% 2%;
+  background: transparent;
+  z-index: 1;
+}
+.signInput , .loginInput{
+  border-bottom: 0.125rem solid gray;
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  padding: 2% 0%;
+  margin-bottom: 10%;
+}
+.signInput .icons, .loginInput .icons{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.lock {
+  cursor: pointer;
+}
+.card form h5{
+  color: gray;
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  transition: .3s;
+}
+.card form .btn{
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 5%;
+}
+.card form .btn input[type="submit"]{
+  width: fit-content;
+  padding: 2% 20%;
+  font-size: 2rem;
+  border-radius: 2rem;
   color: white;
+  background-image: linear-gradient(to right, #3732be, #3866d3, #3732be);
+  background-size: 200%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: .4s;
 }
-
-.App-link {
-  color: #61dafb;
+.card form .btn input[type="submit"]:hover{
+  background-position: right;
 }
+.card form .focus h5{
+  top: -.0625rem;
+  font-size: .75rem;
+}
+.card form i{ 
+  transition: .4s;
+}
+.card form .focus i:first-child{
+  color: #3732be;
+}
+.input:before, .input:after{
+	content: '';
+	position: absolute;
+	bottom: -.125rem;
+	width: 0%;
+	height: 0.125rem;
+	background-color: #3732be;
+	transition: .4s;
+}
+.input:before{
+	right: 50%;
+}
+.input:after{
+	left: 50%;
+}
+.input.focus:before, .input.focus:after{
+	width: 50%;
+}
+.loginPage{
+  margin: 5% 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginPage .avatar{
+  text-align: center;
+  font-size: 8rem;
+  margin-bottom: 5%;
+}
+.loginPage form{
+  width: 65%;
+}
+.footer{
+  display: flex;
+  gap: .650rem;
+}
+a{
+  cursor: pointer !important;
+}
+.card form .wrong.focus i:first-child{
+  color: red;
+}
+.focus.wrong:after, .focus.wrong:before{
+  background-color: red;
+} 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Navigation {
+  width: 100%;
+  height: 7vh;
+  outline: 2px solid red;
+  position: sticky;
+  top: 0; 
+  z-index: 100; 
+  background-color: white;
+  display: grid;
+  grid-template-columns: .75fr .75fr 2fr .75fr .75fr;
+  margin-bottom: 2%
+}
+.categoryList {
+  margin: 0 5%;
+  width: 90%;
+  display: grid;
+  row-gap: 100px; /* Adjust this value based on your layout */
+  text-align: center;
+}
+.item{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  font-size: 1.75rem;
+  align-items: center;
+}
+.item form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.item input[type='text']{
+  font-size: 1.50rem;
+  width: 90%;
+  position: relative;
+  padding: 0 1% 0 5%;
+  border-radius: 1rem;
+  outline: 1px solid gray;
+  border: 0;
+}
+.item h5{
+  position: absolute;
+  color: gray;
+  left: 6%;
+  transform: translateY(10%);
+}
+.item.active{
+  background-color: gray;  
+}
+.categoryList .icon{
+  font-size: 5rem;
+}
+.signInput:nth-child(4){
+  margin-bottom: 1%;
+}
+.checkPassword{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  color:transparent ;
+  margin-bottom: 4.5%;
+  transition: .2s;
+}
+.checkPassword .active{
+  color:red;
+}
+.sew{
+  display:none;
 }

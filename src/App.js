@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState} from 'react';
+import SignUpForm from './signUp';
+import LoginPageForm from './logIn';
+import { useToggleLogin  } from './data';
+import Dashboard from './dashboard'
 
-function App() {
+function Overlay(prop) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+      <input type="button" onClick={()=>console.log(prop)} />;
+    </>
+  );
+}
+function WelcomePage(){
+  const {isLoggedIn, toggleLogin} = useToggleLogin();
+  return ( 
+    <>
+    <div className="app">
+      <div className='card'>
+        <div className='screen'>
+          <div className='screen-image'></div>
+          <div className='screen-overlay'>
+            <Overlay isLoggedIn={isLoggedIn}/>
+          </div>
+        </div>
+        {isLoggedIn ? <LoginPageForm toggleLogin = {toggleLogin}/> : <SignUpForm toggleLogin = {toggleLogin} />}
+      </div>
     </div>
+    </>
+  );
+}
+function App() {
+  const [stanStrony, ustawStanStrony] = useState(true);
+  return ( 
+    <>
+    {stanStrony ? <WelcomePage  /> : <Dashboard/> }
+    </>
   );
 }
 
