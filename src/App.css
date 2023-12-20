@@ -1,5 +1,8 @@
-:root{
-  --blue-rgb: 33 150 243;
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  text-align: center;
 }
 *{
   padding: 0;
@@ -31,11 +34,11 @@ h2{
   margin: 0 0 4%;
  }
 .screen {
-  width: calc(100%-3px);
-  height: calc(100%-6px);
+  width: calc(100% - 3px);
+  height: calc(100%);
   display: flex;
-  border: 3px solid rgb(var(--blue-rgb) / 80%);
-  background-color: rgb(var(--blue-rgb) / 15%);
+  border: 3px solid rgba(56, 102, 211, 0.8); 
+  background: rgba(56, 102, 211, 0.15); 
   overflow: hidden;
   position: relative;
   border-radius: 1rem 0 0 1rem;
@@ -76,12 +79,7 @@ h2{
 }
 
 .screen-overlay {    
-  background: linear-gradient(
-    rgb(var(--blue-rgb) / 0.15),
-    rgb(var(--blue-rgb) / 0.15) 3px,
-    transparent 3px,
-    transparent 9px
-  );
+  background: linear-gradient(rgba(56, 102, 211, 0.15), rgba(56, 102, 211, 0.15) 3px, transparent 3px, transparent 9px);
   background-size: 100% 9px;
   height: 100%;
   width: 100%;
@@ -173,6 +171,7 @@ h2{
 .signPage form input , .loginPage form input{
   border: 0;
   font-size: 1rem;
+  color: #242424;
   font-weight: bold;
   outline: 0;
   width: 100%;
@@ -192,6 +191,7 @@ h2{
   display: flex;
   justify-content:center;
   align-items: center;
+  color:#242424;
 }
 .lock {
   cursor: pointer;
@@ -218,7 +218,7 @@ h2{
   font-size: 2rem;
   border-radius: 2rem;
   color: white;
-  background-image: linear-gradient(to right, #3732be, #3866d3, #3732be);
+  background: linear-gradient(to right, #3732be, #3866d3, #3732be);
   background-size: 200%;
   cursor: pointer;
   border: none;
@@ -266,6 +266,7 @@ h2{
   text-align: center;
   font-size: 8rem;
   margin-bottom: 5%;
+  color:#242424;
 }
 .loginPage form{
   width: 65%;
@@ -273,6 +274,7 @@ h2{
 .footer{
   display: flex;
   gap: .650rem;
+  color: #242424;;
 }
 a{
   cursor: pointer !important;
@@ -283,62 +285,6 @@ a{
 .focus.wrong:after, .focus.wrong:before{
   background-color: red;
 } 
-
-.Navigation {
-  width: 100%;
-  height: 7vh;
-  outline: 2px solid red;
-  position: sticky;
-  top: 0; 
-  z-index: 100; 
-  background-color: white;
-  display: grid;
-  grid-template-columns: .75fr .75fr 2fr .75fr .75fr;
-  margin-bottom: 2%
-}
-.categoryList {
-  margin: 0 5%;
-  width: 90%;
-  display: grid;
-  row-gap: 100px; /* Adjust this value based on your layout */
-  text-align: center;
-}
-.item{
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  gap: .5rem;
-  font-size: 1.75rem;
-  align-items: center;
-}
-.item form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: relative;
-}
-.item input[type='text']{
-  font-size: 1.50rem;
-  width: 90%;
-  position: relative;
-  padding: 0 1% 0 5%;
-  border-radius: 1rem;
-  outline: 1px solid gray;
-  border: 0;
-}
-.item h5{
-  position: absolute;
-  color: gray;
-  left: 6%;
-  transform: translateY(10%);
-}
-.item.active{
-  background-color: gray;  
-}
-.categoryList .icon{
-  font-size: 5rem;
-}
 .signInput:nth-child(4){
   margin-bottom: 1%;
 }
